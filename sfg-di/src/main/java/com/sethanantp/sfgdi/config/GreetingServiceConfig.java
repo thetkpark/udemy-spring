@@ -1,10 +1,10 @@
 package com.sethanantp.sfgdi.config;
 
-import com.sethanantp.sfgdi.services.ConstructorGreetingService;
-import com.sethanantp.sfgdi.services.PropertyInjectedGreetingService;
-import com.sethanantp.sfgdi.services.SetterInjectedGreetingService;
+import com.sethanantp.sfgdi.services.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class GreetingServiceConfig {
@@ -22,5 +22,23 @@ public class GreetingServiceConfig {
     @Bean
     SetterInjectedGreetingService setterInjectedGreetingService() {
         return new SetterInjectedGreetingService();
+    }
+
+    @Bean
+    @Primary
+    PrimaryGreetingService primaryGreetingService() {
+        return new PrimaryGreetingService();
+    }
+
+    @Bean
+    @Profile("EN")
+    I18nEnglishGreetingService i18nService() {
+        return new I18nEnglishGreetingService();
+    }
+
+    @Bean("i18nService")
+    @Profile({"ES", "default"})
+    I18nSpanishGreetingService i18nSpanishGreetingService() {
+        return new I18nSpanishGreetingService();
     }
 }
