@@ -1,5 +1,7 @@
 package com.sethanantp.sfgdi.config;
 
+import com.sethanantp.pets.PetService;
+import com.sethanantp.pets.PetServiceFactory;
 import com.sethanantp.sfgdi.repositories.EnglishGreetingRepository;
 import com.sethanantp.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import com.sethanantp.sfgdi.services.*;
@@ -47,5 +49,22 @@ public class GreetingServiceConfig {
     @Profile({"ES", "default"})
     I18nSpanishGreetingService i18nSpanishGreetingService() {
         return new I18nSpanishGreetingService();
+    }
+
+    @Bean
+    PetServiceFactory petServiceFactory() {
+        return new PetServiceFactory();
+    }
+
+    @Bean
+    @Profile({"dog", "default"})
+    PetService dogPetService(PetServiceFactory petServiceFactory) {
+        return petServiceFactory.getPetService("dog");
+    }
+
+    @Bean
+    @Profile("cat")
+    PetService catPetService(PetServiceFactory petServiceFactory) {
+        return petServiceFactory().getPetService("cat");
     }
 }
