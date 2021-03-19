@@ -1,5 +1,7 @@
 package com.sethanantp.sfgdi.config;
 
+import com.sethanantp.sfgdi.repositories.EnglishGreetingRepository;
+import com.sethanantp.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import com.sethanantp.sfgdi.services.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,9 +33,14 @@ public class GreetingServiceConfig {
     }
 
     @Bean
+    EnglishGreetingRepository englishGreetingRepository() {
+        return new EnglishGreetingRepositoryImpl();
+    }
+
+    @Bean
     @Profile("EN")
-    I18nEnglishGreetingService i18nService() {
-        return new I18nEnglishGreetingService();
+    I18nEnglishGreetingService i18nService(EnglishGreetingRepository englishGreetingRepository) {
+        return new I18nEnglishGreetingService(englishGreetingRepository);
     }
 
     @Bean("i18nService")
