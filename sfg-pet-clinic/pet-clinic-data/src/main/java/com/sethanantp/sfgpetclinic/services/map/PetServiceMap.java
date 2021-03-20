@@ -2,9 +2,11 @@ package com.sethanantp.sfgpetclinic.services.map;
 
 import com.sethanantp.sfgpetclinic.model.Pet;
 import com.sethanantp.sfgpetclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
     @Override
     public Set<Pet> findAll() {
