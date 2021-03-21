@@ -1,7 +1,22 @@
 spring:
   profiles:
-    active: dog,EN,qa
+    active:
+      - dog
+      - EN
+      - prod
 guru:
   username: YAMLUsername
   password: YAMLPassword
   jdbcurl: YAMLurl
+
+# --- Separate the configuration
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+guru:
+  username: YAMLProdUsername
+  password: YAMLProdPassword
+  jdbcurl: YAMLProdurl
+
