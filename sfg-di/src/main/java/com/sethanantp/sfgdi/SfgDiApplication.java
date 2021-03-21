@@ -1,6 +1,7 @@
 package com.sethanantp.sfgdi;
 
 import com.sethanantp.sfgdi.config.SfgConfiguration;
+import com.sethanantp.sfgdi.config.SfgConstructorConfig;
 import com.sethanantp.sfgdi.controllers.*;
 import com.sethanantp.sfgdi.datasource.FakeDataSource;
 import com.sethanantp.sfgdi.services.PrototypeBean;
@@ -62,6 +63,12 @@ public class SfgDiApplication {
 		System.out.println(sfgConfiguration.getUsername());
 		System.out.println(sfgConfiguration.getPassword());
 		System.out.println(sfgConfiguration.getJdbcurl());
+
+		System.out.println("--------Constructor Binding");
+		SfgConstructorConfig sfgConstructorConfig = ctx.getBean(SfgConstructorConfig.class);
+		System.out.println(sfgConstructorConfig.getUsername());
+		System.out.println(sfgConstructorConfig.getPassword());
+		System.out.println(sfgConstructorConfig.getJdbcurl());
 
 	}
 
