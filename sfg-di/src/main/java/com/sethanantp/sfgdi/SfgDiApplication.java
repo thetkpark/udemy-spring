@@ -1,5 +1,6 @@
 package com.sethanantp.sfgdi;
 
+import com.sethanantp.sfgdi.config.SfgConfiguration;
 import com.sethanantp.sfgdi.controllers.*;
 import com.sethanantp.sfgdi.datasource.FakeDataSource;
 import com.sethanantp.sfgdi.services.PrototypeBean;
@@ -36,7 +37,7 @@ public class SfgDiApplication {
 		SetterInjectedController setterInjectedController = (SetterInjectedController) ctx.getBean("setterInjectedController");
 		System.out.println(setterInjectedController.getGreeting());
 
-		System.out.println("-------- Contructor");
+		System.out.println("-------- Constructor");
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 		System.out.println(constructorInjectedController.getGreeting());
 
@@ -55,6 +56,12 @@ public class SfgDiApplication {
 		System.out.println(fakeDataSource.getUsername());
 		System.out.println(fakeDataSource.getPassword());
 		System.out.println(fakeDataSource.getJdbcurl());
+
+		System.out.println("--------Config Props Bean");
+		SfgConfiguration sfgConfiguration = ctx.getBean(SfgConfiguration.class);
+		System.out.println(sfgConfiguration.getUsername());
+		System.out.println(sfgConfiguration.getPassword());
+		System.out.println(sfgConfiguration.getJdbcurl());
 
 	}
 
